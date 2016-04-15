@@ -76,5 +76,28 @@ def chain(input, fs)
    #representation of it, :foo, was also defined and we can use it
    #to refer to method foo when needed
    fs.each {|the_method| input = send(the_method, input)}
-   input  
+   input
+end
+
+# Write a function insertDash(num) that will insert dashes ('-') between each two odd numbers in num. For example: if num is 454793 the output should be 4547-9-3. Don't count zero as an odd number.
+
+def insert_dash(num)
+  arr = num.to_s.split("")
+  index = 0
+  
+  while index < arr.length do
+    if arr[index].to_i.odd? && arr[index + 1].to_i.odd?
+      arr[index] += "-"
+    end
+    index += 1
+  end
+  
+  arr.join("")
+end
+
+insert_dash(4556779)
+
+# Best practice:
+def insert_dash(num)
+  num.to_s.gsub(/(?<=[13579])([13579])/, '-\1')
 end
