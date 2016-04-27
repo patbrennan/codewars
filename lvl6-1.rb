@@ -45,3 +45,44 @@ def sum_values2(ints, value)
 end
 
 sum_values2(example, 15)
+
+# Your task is to write a function which returns the sum of following series upto nth term(parameter).
+
+# Series: 1 + 1/4 + 1/7 + 1/10 + 1/13 + 1/16 +...
+# Rules:
+
+# You need to round the answer upto 2 decimal places and return it as String.
+# If the given value is 0 then it should return 0.00
+# You will only be given Natural Numbers as arguments.
+# Examples:
+
+# SeriesSum(1) => 1 = "1"
+# SeriesSum(2) => 1 + 1/4 = "1.25"
+# # SeriesSum(5) => 1 + 1/4 + 1/7 + 1/10 + 1/13 = "1.57"
+
+def series_sum(n)
+  return "0.00" if n == 0
+  start = 1.0
+  value = 0.0
+  
+  n.times do 
+    value += (1.0 / start)
+    start += 3.0
+  end
+
+  p "%.2f" % value
+end
+
+series_sum(5) # => "1.57"
+series_sum(1) # => "1.00"
+
+# Trolls are attacking your comment section!
+# A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat
+# Your task is to write a function that takes a string and return a new string with all vowels removed.
+# For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+def disemvowel(string)
+  string.delete "aeiouAEIOU"
+end
+
+disemvowel("This website is for losers LOL!")

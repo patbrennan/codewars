@@ -90,3 +90,57 @@ end
 
 def sum_pair(ints, sum)
 end
+
+# Story
+# Peter lives on a hill, and he always moans about the way to his home. "It's always just up. I never get a rest". But you're pretty sure that at least at one point Peter's altitude doesn't rise, but fall. To get him, you use a nefarious plan: you attach an altimeter to his backpack and you read the data from his way back at the next day.
+# Task
+# You're given a list of compareable elements:
+# heights = [Integers or Floats]
+# Your job is to check whether for any x all successors are greater or equal to x.
+# is_monotone([1,2,3]) == True
+# is_monotone([1,1,2]) == True
+# is_monotone([1])     == True
+# is_monotone([3,2,1]) == False
+# is_monotone([3,2,2]) == False
+# If the list is empty, Peter has probably removed your altimeter, so we cannot prove him wrong and he's still right:
+# isMonotone([])     == True
+
+def is_monotone(heights)
+  x = heights.shift
+  monotone = true
+  
+  heights.each do |num|
+    if num < x
+      monotone = false
+      break
+    end
+    x = heights.shift
+  end
+
+  monotone
+end
+
+is_monotone([])
+is_monotone([1,2,3]) # => true
+is_monotone([1,1,2])
+is_monotone([1])
+is_monotone([3,2,1]) # => false
+is_monotone([3,2,2]) # => false
+
+# refactoring:
+def is_monotone2(heights)
+  return true if heights.empty? || heights.all? { |num| num == heights.first }
+  heights.index(heights.max) < (heights.length - 1) ? false : true
+end
+
+is_monotone2([])
+is_monotone2([1,2,3]) # => true
+is_monotone2([1,1,2])
+is_monotone2([1])
+is_monotone2([3,2,1]) # => false
+is_monotone2([3,2,2]) # => false
+
+# BEST PRACTICE (I feel dumb now...)
+def is_monotone(heights)
+  heights == heights.sort 
+end
