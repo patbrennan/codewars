@@ -86,3 +86,57 @@ def disemvowel(string)
 end
 
 disemvowel("This website is for losers LOL!")
+
+# Task
+
+# You're given a single word. Your task is to swap the halves. If the word has an uneven length, leave the character in the middle at that position and swap the chunks around it.
+
+# Examples
+# reverse_by_center("agent") == "nteag" # center character is e
+# reverse_by_center("secret")  == "retsec" # no center character
+
+def flip_word(word)
+  first_half = ""
+  second_half = ""
+  middle = ""
+  idx = 0
+
+ word.each_char do |letter|
+    if (idx == word.length / 2) && (word.length % 2 != 0)
+      middle << letter
+    elsif idx <= (word.length / 2 - 1)
+      first_half << letter
+    elsif idx > (word.length / 2 - 1)
+      second_half << letter
+    end
+
+    idx += 1
+  end
+
+  puts second_half + middle + first_half
+end
+
+flip_word("secret")
+flip_word("agent")
+
+#refactored:
+
+def flip_word(word)
+  even = word.length % 2 == 0
+  center = word.length / 2
+  
+  first_half = word.byteslice(0..center - 1)
+  second_half = word.byteslice(-center..-1)
+  middle = even ? "" : word.byteslice(center)
+  
+  second_half + middle + first_half
+end
+
+flip_word("secret")
+flip_word("agent")
+
+# BEST ANSWER:
+def flip_word(s)
+  i = s.length / 2
+  s[-i..-1] + s[i, s.length % 2] + s[0, i]
+end
