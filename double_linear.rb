@@ -24,7 +24,18 @@ def dbl_linear(n)
   end
 
   u.sort!.uniq!
-  # binding.pry
+  u[n]
+end
+
+def dbl_linear2(n)
+  u = [1]
+
+  u.each do |num|
+    break if u.index(num) > n*1.1
+    u << (2*num + 1) << (3*num + 1)
+  end
+
+  u.sort!.uniq!
   u[n]
 end
 
@@ -41,6 +52,19 @@ def time
   puts "Execute: #{finish - start} seconds."
 end
 
+def time2
+  start = Time.now
+
+  dbl_linear2(10)
+  dbl_linear2(20)
+  dbl_linear2(30)
+  dbl_linear2(50)
+
+  finish = Time.now
+
+  puts "Execute: #{finish - start} seconds."
+end
+
 # puts dbl_linear(10)
 # puts "-------"
 # puts dbl_linear(20)
@@ -51,3 +75,4 @@ end
 # puts "-------"
 
 time()
+time2()
